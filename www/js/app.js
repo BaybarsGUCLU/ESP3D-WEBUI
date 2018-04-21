@@ -1,14 +1,58 @@
 var ESP3D_authentication = false;
+var page_id = "";
 
 window.onload = function() {
     //to check if javascript is disabled like in anroid preview
-    document.getElementById('warningmsg').style.display = 'none';
+    document.getElementById('loadingmsg').style.display = 'none';
+    if (!!window.EventSource) {
+      var source = new EventSource('/events');
+      source.addEventListener('InitID', function(e) {
+      page_id = e.data;
+      console.log("page id = " + page_id); 
+      }, false);
+
+      source.addEventListener('ActiveID', function(e) {
+        if(page_id != e.data) {
+            Disable_interface();
+            console.log("I am disabled");
+            source.close();
+        }
+      }, false);
+    }
+    console.log("init cmd processor");
+    setInterval(function(){ process_cmd(); }, 100);
+    console.log("Connect to board");
     connectdlg();
 };
 
-window.addEventListener("resize", OnresizeWindow);
+//window.addEventListener("resize", OnresizeWindow);
 
-function OnresizeWindow(){
+//function OnresizeWindow(){
+//}
+var total_boot_steps = 5;
+var current_boot_steps = 0;
+
+function display_boot_progress(step){
+	var val = 1;
+	if (typeof step != 'undefined')val = step;
+	current_boot_steps+=val;
+	console.log(current_boot_steps);
+	console.log(Math.round((current_boot_steps*100)/total_boot_steps));
+	document.getElementById('load_prg').value=Math.round((current_boot_steps*100)/total_boot_steps);
+}
+
+
+function Disable_interface() {
+    //block all communication
+    http_communication_locked = true;
+    //clear all waiting commands
+    clear_cmd_list();
+    //no camera 
+    document.getElementById('camera_frame').src = "";
+    //No auto check
+    on_autocheck_position(false);
+    on_autocheck_temperature(false);
+    UIdisableddlg();
 }
 
 function update_ui_text(){   
@@ -53,7 +97,9 @@ function update_UI_firmware_target() {
 }
 
 function initUI() {
-    document.getElementById("main_page_loader").style.display = 'block';
+	console.log("Init UI");
+	if (ESP3D_authentication)connectdlg (false);
+    AddCmd(display_boot_progress);
     //initial check
     if ((typeof target_firmware == "undefined") || (typeof web_ui_version == "undefined") || (typeof direct_sd == "undefined") ) alert('Missing init data!');
     //check FW
@@ -67,23 +113,48 @@ function initUI() {
     //removeIf(production)
     console.log(JSON.stringify(translated_list));
     //endRemoveIf(production)
+    console.log("Get preferences");
+    getpreferenceslist();
+    initUI_2();
+}
+
+function initUI_2() {
+	AddCmd(display_boot_progress);
     //get all settings from ESP3D
+    console.log("Get settings");
     refreshSettings();
-    //init panels    
+    initUI_3();
+}
+function initUI_3() {
+	AddCmd(display_boot_progress);
+    //init panels 
+    console.log("Get macros");
+    init_controls_panel(); 
+	initUI_4();
+}
+function initUI_4() {
+	AddCmd(display_boot_progress);  
     init_temperature_panel();
     init_extruder_panel();
     init_command_panel();
-    init_controls_panel();
     init_files_panel(false);
     //check if we need setup
     if ( target_firmware == "???"){
+		console.log("Launch Setup");
+		AddCmd(display_boot_progress);
+		closeModal("Connection successful");
         setupdlg();
     } else {
             setup_is_done = true;
+            AddCmd(display_boot_progress);
             build_HTML_setting_list(current_setting_filter);
-            document.getElementById('main_ui').style.display='block';
+            AddCmd(closeModal);
+            AddCmd(show_main_UI);
         }
-    document.getElementById("main_page_loader").style.display = 'none';
+}
+
+function show_main_UI(){
+	document.getElementById('main_ui').style.display='block';
 }
 
 function compareStrings(a, b) {

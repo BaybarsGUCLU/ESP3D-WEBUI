@@ -57,6 +57,7 @@ var germantrans = {
 "Feed (25-150%)":"Vorschub (25-150%)",
 "Feedrate :":"Vorschubgeschwindigkeit :",
 "Filename":"Dateiname",
+"Filename/URI":"Dateiname/URI",
 "Filter temperatures":"Filter Temperatur",
 "Firmware":"Firmware",
 "Flow (50-300%)":"Fluss (50-300%)",

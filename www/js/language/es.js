@@ -57,6 +57,7 @@ var spanishtrans = {
 "Feed (25-150%)":"Velocidad (25-150%)",
 "Feedrate :":"Avance :",
 "Filename":"Archivo",
+"Filename/URI":"Archivo/URI",
 "Filter temperatures":"Filtrar temperaturas",
 "Firmware":"Firmware",
 "Flow (50-300%)":"Flujo (50-300%)",

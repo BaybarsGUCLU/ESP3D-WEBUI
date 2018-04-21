@@ -110,7 +110,7 @@ function get_Position(){
     process_Position(response);
     return;
     //endRemoveIf(production)
-    SendPrinterCommand(command, false, process_Position);
+    SendPrinterCommand(command, false, process_Position,null, 114, 1);
 }
 
  function Control_get_position_value(label, result_data) {
@@ -248,7 +248,9 @@ function macro_command (target, filename) {
         if (target_firmware != "smoothieware"){
             cmd =  "M23 " + filename + "\nM24"; 
             }
-        } else return;
+        } else if (target == "URI") {
+            window.open(filename);
+            }else return;
     //console.log(cmd);
     SendPrinterCommand(cmd);
 }

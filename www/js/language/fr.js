@@ -57,6 +57,7 @@ var frenchtrans = {
 "Feed (25-150%)":"Vitesse (25-150%)",
 "Feedrate :":"Acc&eacute;l&eacute;ration :",
 "Filename":"Fichier",
+"Filename/URI":"Fichier/URI",
 "Filter temperatures":"Filtrer temp&eacute;ratures",
 "Firmware":"Micrologiciel",
 "Flow (50-300%)":"D&eacute;bit (50-300%)",

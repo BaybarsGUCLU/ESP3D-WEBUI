@@ -79,8 +79,7 @@ function Preferences_build_list(response_text){
     preferenceslist = [];
      try {
         if(response_text.length != 0) { 
-            console.log("found");
-            console.log(response_text);  
+            //console.log(response_text);  
             preferenceslist = JSON.parse(response_text);
         } else {
              console.log("default");
@@ -103,7 +102,7 @@ function applypreferenceslist(){
         if (typeof(preferenceslist[0].enable_camera ) !== 'undefined') {
              if (preferenceslist[0].enable_camera === 'true'){
                  document.getElementById('camtablink').style.display = "block";
-               camera_GetAddress();
+				 camera_GetAddress();
              if (typeof(preferenceslist[0].auto_load_camera ) !== 'undefined') {              
                       if (preferenceslist[0].auto_load_camera === 'true') {
                          var saddress = document.getElementById('camera_webaddress').value

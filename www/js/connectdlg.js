@@ -1,14 +1,15 @@
 //Connect dialog
-function connectdlg () {
-    getpreferenceslist();
+function connectdlg (getFw) {
     var modal = setactiveModal('connectdlg.html');
+    var get_FW = true;
     if ( modal == null) return;
     showModal() ;
     //removeIf(production)
     connectsuccess("FW version:0.9.9X # FW target:Smoothieware # FW HW:Direct SD # primary : /sd/ # secondary : /ext/ # authentication: no");
     return;
     //endRemoveIf(production)
-    retryconnect ();
+    if (typeof getFw != 'undefined')get_FW = getFw;
+    if(get_FW)retryconnect();
 }
 
 function getFWdata(response){
@@ -62,14 +63,14 @@ function getFWdata(response){
 function connectsuccess(response){
         if (getFWdata( response))
             {
-            //document.getElementById('main_ui').style.display='block';
-            closeModal("Connection successful");
+            console.log("Fw identification:" + response);
             if (ESP3D_authentication) {
-                document.getElementById('menu_autthentication').style.display='inline';
+				closeModal("Connection successful");
+                document.getElementById('menu_authentication').style.display='inline';
                 logindlg(initUI, true);
             }
             else {
-                document.getElementById('menu_autthentication').style.display='none';
+                document.getElementById('menu_authentication').style.display='none';
                 initUI();
                 }
             }
@@ -83,7 +84,7 @@ function connectfailed(errorcode, response){
     document.getElementById('connectbtn').style.display='block';
     document.getElementById('failed_connect_msg').style.display='block';
     document.getElementById('connecting_msg').style.display='none';
-    console.log("Error " + errorcode + " : " + response);
+    console.log("Fw identification error " + errorcode + " : " + response);
 }
 
 function retryconnect () {

@@ -113,7 +113,7 @@ function get_Temperatures(){
     process_Temperatures(response);
     return;
     //endRemoveIf(production)
-    SendPrinterCommand(command, false, process_Temperatures);
+    SendPrinterCommand(command, false, process_Temperatures,null,105,1);
 }
 
 function process_Temperatures(response){
