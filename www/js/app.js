@@ -1,30 +1,86 @@
 var ESP3D_authentication = false;
 var page_id = "";
+var convertDHT2Fahrenheit = false;
+var ws_source;
+var event_source;
+var log_off = false;
+
+function Init_events(e){
+  page_id = e.data;
+  console.log("connection id = " + page_id); 
+}
+
+function ActiveID_events(e){
+    if(page_id != e.data) {
+        Disable_interface();
+        console.log("I am disabled");
+        event_source.close();
+    }
+}
+
+function DHT_events(e){
+  Handle_DHT(e.data);
+}
 
 window.onload = function() {
     //to check if javascript is disabled like in anroid preview
     document.getElementById('loadingmsg').style.display = 'none';
     if (!!window.EventSource) {
-      var source = new EventSource('/events');
-      source.addEventListener('InitID', function(e) {
-      page_id = e.data;
-      console.log("page id = " + page_id); 
-      }, false);
-
-      source.addEventListener('ActiveID', function(e) {
-        if(page_id != e.data) {
-            Disable_interface();
-            console.log("I am disabled");
-            source.close();
-        }
-      }, false);
+      event_source = new EventSource('/events');
+      event_source.addEventListener('InitID', Init_events, false);
+      event_source.addEventListener('ActiveID', ActiveID_events, false);
+      event_source.addEventListener('DHT', DHT_events, false);
     }
-    console.log("init cmd processor");
+    startSocket();
+    console.log("Init cmd processor");
     setInterval(function(){ process_cmd(); }, 100);
     console.log("Connect to board");
     connectdlg();
 };
 
+function startSocket(){
+      ws_source = new WebSocket('ws://'+document.location.host+'/ws',['arduino']);
+      ws_source.binaryType = "arraybuffer";
+      ws_source.onopen = function(e){
+        console.log("Connected");
+      };
+      ws_source.onclose = function(e){
+        console.log("Disconnected");
+        //seems sometimes it disconnect so wait 3s and reconnect
+        //if it is not a log off
+        if(!log_off) setTimeout(startSocket, 3000);
+      };
+      ws_source.onerror = function(e){
+        console.log("ws error", e);
+      };
+      ws_source.onmessage = function(e){
+        var msg = "";
+        if(e.data instanceof ArrayBuffer){
+          var bytes = new Uint8Array(e.data);
+          for (var i = 0; i < bytes.length; i++) {
+            msg += String.fromCharCode(bytes[i]);
+          }
+        } else {
+          msg += e.data;
+        }
+        console.log(msg);
+        Monitor_output_Update(msg);
+      };
+    }
+
+function Handle_DHT(data){
+    var tdata = data.split(" ");
+    if (tdata.length != 2) {
+    console.log("DHT data invalid: " + data );
+    return;
+    }
+    var temp = (convertDHT2Fahrenheit)? (parseFloat(tdata[0]) * 1.8) + 32 : parseFloat(tdata[0]);
+    document.getElementById('DHT_humidity').innerHTML=parseFloat(tdata[1]).toFixed(2).toString()+"%";
+    var temps = temp.toFixed(2).toString() + "&deg;" ;
+    if(convertDHT2Fahrenheit) temps+="F";
+    else temps+="C";
+    document.getElementById('DHT_temperature').innerHTML=temps;
+}
 //window.addEventListener("resize", OnresizeWindow);
 
 //function OnresizeWindow(){
@@ -36,8 +92,8 @@ function display_boot_progress(step){
 	var val = 1;
 	if (typeof step != 'undefined')val = step;
 	current_boot_steps+=val;
-	console.log(current_boot_steps);
-	console.log(Math.round((current_boot_steps*100)/total_boot_steps));
+	//console.log(current_boot_steps);
+	//console.log(Math.round((current_boot_steps*100)/total_boot_steps));
 	document.getElementById('load_prg').value=Math.round((current_boot_steps*100)/total_boot_steps);
 }
 
@@ -45,13 +101,18 @@ function display_boot_progress(step){
 function Disable_interface() {
     //block all communication
     http_communication_locked = true;
+    log_off  = true;
     //clear all waiting commands
     clear_cmd_list();
     //no camera 
     document.getElementById('camera_frame').src = "";
     //No auto check
     on_autocheck_position(false);
-    on_autocheck_temperature(false);
+    on_autocheck_temperature(false); 
+    event_source.removeEventListener('ActiveID', ActiveID_events, false);
+    event_source.removeEventListener('InitID', Init_events, false);
+    event_source.removeEventListener('DHT', DHT_events, false);
+    ws_source.close();
     UIdisableddlg();
 }
 

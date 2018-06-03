@@ -18,7 +18,12 @@ function statussuccess(response){
         for (var i = 0; i < tresponse.length; i++){
             var data = tresponse[i].split(":");
             if (data.length >= 2)  {
-                output+= "<label>" + data[0] + ": </label>&nbsp;<span class='text-info'><strong>"+ data[1];
+                output+= "<label>" + translate_text_item(data[0]) + ": </label>&nbsp;<span class='text-info'><strong>";
+                var data2 = data[1].split(" (")
+                output+= translate_text_item(data2[0].trim());
+                 for (v=1;v<data2.length;v++){
+                    output+=" (" + data2[v];
+                }
                 for (v=2;v<data.length;v++){
                     output+=":" + data[v];
                 }

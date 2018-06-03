@@ -3,6 +3,7 @@ var preferenceslist = [];
 var language_save = language;
 var defaultpreferenceslist= "[{\
                                             \"language\":\"en\",\
+                                            \"enable_DHT\":\"false\",\
                                             \"enable_camera\":\"false\",\
                                             \"auto_load_camera\":\"false\",\
                                             \"camera_address\":\"\",\
@@ -97,12 +98,13 @@ function Preferences_build_list(response_text){
 function applypreferenceslist(){
     //Assign each control state
     translate_text(preferenceslist[0].language);
+    build_HTML_setting_list(current_setting_filter);
    if (typeof document.getElementById('camtab') != "undefined") {
        var camoutput =false;
         if (typeof(preferenceslist[0].enable_camera ) !== 'undefined') {
              if (preferenceslist[0].enable_camera === 'true'){
                  document.getElementById('camtablink').style.display = "block";
-				 camera_GetAddress();
+                 camera_GetAddress();
              if (typeof(preferenceslist[0].auto_load_camera ) !== 'undefined') {              
                       if (preferenceslist[0].auto_load_camera === 'true') {
                          var saddress = document.getElementById('camera_webaddress').value
@@ -125,7 +127,14 @@ function applypreferenceslist(){
                  document.getElementById('camera_detach_button').style.display = "none";
             }
          }
-    
+    if (preferenceslist[0].enable_DHT === 'true') {
+        document.getElementById('DHT_humidity').style.display='block';
+        document.getElementById('DHT_temperature').style.display='block';
+        }
+    else {
+        document.getElementById('DHT_humidity').style.display='none';
+        document.getElementById('DHT_temperature').style.display='none';
+        }
     if (preferenceslist[0].enable_second_extruder === 'true') {
         document.getElementById('second_extruder_UI').style.display='block';
         document.getElementById('temperature_secondExtruder').style.display='table-row';
@@ -221,6 +230,10 @@ function build_dlg_preferences_list(){
      if (typeof(preferenceslist[0].camera_address ) !== 'undefined') {
         document.getElementById('preferences_camera_webaddress').value = decode_entitie(preferenceslist[0].camera_address);
      } else document.getElementById('preferences_camera_webaddress').value = "";
+      //DHT
+     if (typeof(preferenceslist[0].enable_DHT ) !== 'undefined') {
+        document.getElementById('enable_DHT').checked = (preferenceslist[0].enable_DHT === 'true');
+     } else document.getElementById('enable_DHT').checked = false;
      //second extruder
      if (typeof(preferenceslist[0].enable_second_extruder ) !== 'undefined') {
         document.getElementById('enable_second_extruder_controls').checked = (preferenceslist[0].enable_second_extruder === 'true');
@@ -306,6 +319,7 @@ function closePreferencesDialog(){
             (typeof(preferenceslist[0].enable_camera ) === 'undefined') || 
             (typeof(preferenceslist[0].auto_load_camera ) === 'undefined') ||
             (typeof(preferenceslist[0].camera_address ) === 'undefined') ||
+            (typeof(preferenceslist[0].enable_DHT ) === 'undefined') || 
             (typeof(preferenceslist[0].enable_second_extruder ) === 'undefined') || 
             (typeof(preferenceslist[0].enable_bed ) === 'undefined') || 
             (typeof(preferenceslist[0].enable_fan ) === 'undefined') ||
@@ -331,6 +345,8 @@ function closePreferencesDialog(){
             if (document.getElementById('autoload_camera_panel').checked !=  (preferenceslist[0].auto_load_camera === 'true')) modified = true;
             //camera address
              if (document.getElementById('preferences_camera_webaddress').value !=  decode_entitie(preferenceslist[0].camera_address)) modified = true;
+             //DHT
+            if (document.getElementById('enable_DHT').checked != (preferenceslist[0].enable_DHT === 'true')) modified = true;
             //second extruder
             if (document.getElementById('enable_second_extruder_controls').checked != (preferenceslist[0].enable_second_extruder === 'true')) modified = true;
             //bed
@@ -406,6 +422,7 @@ function SavePreferences(current_preferences){
         saveprefs += "\",\"enable_camera\":\"" + document.getElementById('show_camera_panel').checked ;
         saveprefs += "\",\"auto_load_camera\":\"" + document.getElementById('autoload_camera_panel').checked ;
         saveprefs += "\",\"camera_address\":\"" + HTMLEncode(document.getElementById('preferences_camera_webaddress').value) ;
+        saveprefs +="\",\"enable_DHT\":\"" + document.getElementById('enable_DHT').checked ; 
         saveprefs +="\",\"enable_second_extruder\":\"" + document.getElementById('enable_second_extruder_controls').checked ; 
         saveprefs +="\",\"enable_bed\":\"" +  document.getElementById('enable_bed_controls').checked ;
         saveprefs +="\",\"enable_fan\":\"" +  document.getElementById('enable_fan_controls').checked ;

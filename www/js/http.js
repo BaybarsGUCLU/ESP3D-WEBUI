@@ -14,7 +14,7 @@ function http_resultfn(response_text){
 		{
 			var fn =  http_cmd_list[0].resultfn;
 		fn(response_text);
-		} else console.log ("No resultfn");
+		}//else console.log ("No resultfn");
 	http_cmd_list.shift();
 	processing_cmd = false;
 }
@@ -23,15 +23,15 @@ function http_errorfn(errorcode, response_text){
 		{
 		var fn = http_cmd_list[0].errorfn;
 		fn(errorcode, response_text);
-		} else console.log ("No errorfn");
+		} //else console.log ("No errorfn");
 	http_cmd_list.shift();
 	processing_cmd = false;
 }
 
 function process_cmd(){
 	if ((http_cmd_list.length > 0) && (!processing_cmd)) {
-		console.log("Processing 1/" + http_cmd_list.length);
-		console.log("Processing " + http_cmd_list[0].cmd);
+		//console.log("Processing 1/" + http_cmd_list.length);
+		//console.log("Processing " + http_cmd_list[0].cmd);
 		if (http_cmd_list[0].type == "GET") {			
 			processing_cmd = true;
 			ProcessGetHttp(http_cmd_list[0].cmd, http_resultfn, http_errorfn);
@@ -40,7 +40,7 @@ function process_cmd(){
 			if (!(http_cmd_list[0].isupload)) {
 				ProcessPostHttp(http_cmd_list[0].cmd, http_cmd_list[0].data, http_resultfn, http_errorfn);
 			} else {
-				console.log("Uploading");
+				//console.log("Uploading");
 				ProcessFileHttp(http_cmd_list[0].cmd, http_cmd_list[0].data, http_cmd_list[0].progressfn, http_resultfn, http_errorfn);
 			}
 		} else if (http_cmd_list[0].type == "CMD"){
@@ -49,52 +49,52 @@ function process_cmd(){
 			http_cmd_list.shift();
 		}
 		
-	} else if (http_cmd_list.length > 0)console.log("processing"); 
+	} //else if (http_cmd_list.length > 0)console.log("processing"); 
 }
 
 function AddCmd(cmd_fn, id){
 	if (http_cmd_list.length > max_cmd){
-		console.log("adding rejected");	
+		//console.log("adding rejected");	
 		return;
 	}
 	var cmd_id = 0;
 	if (typeof id != 'undefined') cmd_id = id;
-	console.log("adding command");
+	//onsole.log("adding command");
 	var cmd  = {cmd:cmd_fn,type:"CMD", id:cmd_id};
 	http_cmd_list.push(cmd);
-	console.log("Now " + http_cmd_list.length);
+	//console.log("Now " + http_cmd_list.length);
 }
 
 function SendGetHttp(url, result_fn, error_fn, id, max_id){
 	if ((http_cmd_list.length > max_cmd) && (max_cmd != -1)){
-		console.log("adding rejected");	
+		//console.log("adding rejected");	
 		error_fn();
 		return;
 	}
 	var cmd_id = 0;
 	var cmd_max_id = 1;
-	console.log("ID = " + id);
-	console.log("Max ID = " + max_id);
+	//console.log("ID = " + id);
+	//console.log("Max ID = " + max_id);
 	if (typeof id != 'undefined') {
 		cmd_id = id;
 		if (typeof max_id != 'undefined')  cmd_max_id= max_id;
-		else console.log("No Max ID defined");
+		//else console.log("No Max ID defined");
 		for (p=0; p < http_cmd_list.length;p++){
-			console.log("compare " + (max_id - cmd_max_id));	
+			//console.log("compare " + (max_id - cmd_max_id));	
 			if (http_cmd_list[p].id == cmd_id){
 				cmd_max_id--;
-				console.log("found " + http_cmd_list[p].id + " and " + cmd_id);	
+				//console.log("found " + http_cmd_list[p].id + " and " + cmd_id);	
 			}
 			if (cmd_max_id <= 0) {
-				console.log("Limit reched for " + id);	
+				//console.log("Limit reched for " + id);	
 				return;
 				}
 		}
-	}else console.log("No ID defined");	
-	console.log("adding " + url);
+	}//else console.log("No ID defined");	
+	//console.log("adding " + url);
 	var cmd  = {cmd:url,type:"GET", isupload:false, resultfn:result_fn, errorfn:error_fn, id:cmd_id};
 	http_cmd_list.push(cmd);
-	console.log("Now " + http_cmd_list.length);
+	//onsole.log("Now " + http_cmd_list.length);
 }
 
 	
@@ -117,14 +117,14 @@ function ProcessGetHttp(url, resultfn, errorfn){
         }
     }
     if (url.indexOf("?") != -1) url += "&PAGEID=" +  page_id;
-    console.log(url);
+    //console.log(url);
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
 
 function SendPostHttp(url, postdata,result_fn, error_fn, id, max_id){
 	if ((http_cmd_list.length > max_cmd) && (max_cmd != -1)){
-		console.log("adding rejected");	
+		//console.log("adding rejected");	
 		error_fn();
 		return;
 	}
@@ -139,7 +139,7 @@ function SendPostHttp(url, postdata,result_fn, error_fn, id, max_id){
 		}
 	}
 	
-	console.log("adding " + url);
+	//console.log("adding " + url);
 	var cmd  = {cmd:url,type:"POST",isupload:false, data:postdata, resultfn:result_fn, errorfn:error_fn, initfn:init_fn, id:cmd_id};
 	http_cmd_list.push(cmd);
 }
@@ -169,7 +169,7 @@ function ProcessPostHttp(url, postdata,resultfn, errorfn){
 
 function SendFileHttp(url, postdata, progress_fn,result_fn, error_fn){
 	if ((http_cmd_list.length > max_cmd) && (max_cmd != -1)){
-		console.log("adding rejected");	
+		//console.log("adding rejected");	
 		error_fn();
 		return;
 	}

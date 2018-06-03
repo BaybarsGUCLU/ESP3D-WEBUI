@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ESP3D WebUI</title>
     <script>var target_firmware="";</script>
-    <script>var web_ui_version="2.0b12";</script>
+    <script>var web_ui_version="2.0b14";</script>
     <script>var direct_sd=false;</script>
     <script>var fw_version="";</script>
     <script>var primary_sd= "/ext/";</script>
@@ -35,7 +35,7 @@
                     <span id='showSDused'>&nbsp;</span>
                 </span>
             </div>
-
+            
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#">
@@ -167,6 +167,12 @@
                             </a>
                     </div>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a id="DHT_humidity">20%</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a id="DHT_temperature">20&deg;C</a></li>
             </ul>
          </nav>
         <!-- /topnavbar -->
