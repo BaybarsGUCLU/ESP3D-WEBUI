@@ -1837,6 +1837,12 @@ input[type="search"] {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.unvisible {
+  position: relative;
+  display: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .radio label,
 .checkbox label {
   min-height: 20px;
