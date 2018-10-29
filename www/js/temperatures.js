@@ -41,11 +41,14 @@ var extruder_1_line = new TimeSeries();
 var bed_line = new TimeSeries();
 
 function init_temperature_panel(){
-    var value = get_localdata('autocheck_temperature');
-    if (value == 'true'){
-        document.getElementById('autocheck_temperature').checked =true;
-        on_autocheck_temperature();
-    }
+//    var value = get_localdata('autocheck_temperature');
+//    if (value == 'true'){
+//        document.getElementById('autocheck_temperature').checked =true;
+//        on_autocheck_temperature();
+//    }
+      document.getElementById('autocheck_temperature').checked =true;
+      on_autocheck_temperature();
+
     smoothiebed.addTimeSeries(bed_line,{lineWidth:1,strokeStyle:'#808080',fillStyle:'rgba(128,128,128,0.3)'});
     smoothieextuder.addTimeSeries(extruder_0_line,{lineWidth:1,strokeStyle:'#ff8080',fillStyle:'rgba(255,128,128,0.3)'});
     smoothieextuder.streamTo(document.getElementById("extruderTempgraph"),3000 /*delay*/);
