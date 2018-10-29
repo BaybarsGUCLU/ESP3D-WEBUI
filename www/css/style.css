@@ -34,7 +34,7 @@ display: inline-block;
 }
 
 .loader_centered {
-    background-color: white;
+    background-color: black;
     position: absolute;
     top:0;
     bottom: 0;

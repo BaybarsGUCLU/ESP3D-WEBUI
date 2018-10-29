@@ -55,8 +55,8 @@ function on_autocheck_position(){
     // if (document.getElementById('autocheck_position').checked) {
 
        store_localdata('autocheck_position', true);
-       var interval = parseInt(document.getElementById('posInterval_check').value);   // Control panelinin checkbox'ı kaldırıldı.
-
+       // var interval = parseInt(document.getElementById('posInterval_check').value);   // Control panelinin checkbox'ı kaldırıldı.
+       var interval = 1;                                                                 // her 1 sn'de kontrol sağlandı.
        if (!isNaN(interval) && interval > 0 && interval < 100) {
            if (interval_position != -1 )clearInterval(interval_position);
            interval_position = setInterval(function(){ get_Position() }, interval * 1000);
