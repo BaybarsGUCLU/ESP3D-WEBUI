@@ -1,3 +1,8 @@
+
+/*   @Değişiklik yapılan satırlar.
+ * 47, 67
+*/
+
 .dropbtn {
     padding: 16px;
     font-size: 14px;
@@ -39,7 +44,8 @@
 }
 
 .dropmenu-content a:hover,  
-.dropdown-content a:hover {background-color: #e1e1e1}
+/*.dropdown-content a:hover {background-color: #e1e1e1}*/
+.dropdown-content a:hover {background-color: #0D2F38}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -58,7 +64,8 @@
   height: 1px;
   margin: 2px 0;
   overflow: hidden;
-  background-color: #e5e5e5;
+  /*background-color: #e5e5e5;*/
+  background-color: #0D2F38;
 }
 
 .dropmenu-content-up {
