@@ -102,7 +102,8 @@ function on_autocheck_temperature(){
 }
 
 function onTempIntervalChange(){
-var interval = parseInt(document.getElementById('tempInterval_check').value);
+// var interval = parseInt(document.getElementById('tempInterval_check').value);
+   var interval = 1;
  if (!isNaN(interval) && interval > 0 && interval < 100 ) {
     on_autocheck_temperature();
     }

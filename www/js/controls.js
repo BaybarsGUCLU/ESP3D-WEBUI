@@ -52,26 +52,27 @@ function processMacroGetFailed(errorcode, response){
 }
 
 function on_autocheck_position(){
-    if (document.getElementById('autocheck_position').checked) {
+    // if (document.getElementById('autocheck_position').checked) {
+
        store_localdata('autocheck_position', true);
-       var interval = parseInt(document.getElementById('posInterval_check').value);
+       var interval = parseInt(document.getElementById('posInterval_check').value);   // Control panelinin checkbox'ı kaldırıldı.
+
        if (!isNaN(interval) && interval > 0 && interval < 100) {
            if (interval_position != -1 )clearInterval(interval_position);
            interval_position = setInterval(function(){ get_Position() }, interval * 1000);
-            }
-        else {
+       } else {
             document.getElementById('autocheck_position').checked = false;
             store_localdata('autocheck_position', false);
             document.getElementById('posInterval_check').value = 0;
             if (interval_position != -1 )clearInterval(interval_position);
             interval_position = -1;
-        }
-    }
-  else {
-        store_localdata('autocheck_position', false);
-        if (interval_position != -1 )clearInterval(interval_position);
-        interval_position = -1;
-    }
+            }
+  //   }
+  // else {
+  //       store_localdata('autocheck_position', false);
+  //       if (interval_position != -1 )clearInterval(interval_position);
+  //       interval_position = -1;
+  //   }
 }
 
 function onPosIntervalChange(){

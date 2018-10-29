@@ -9,17 +9,17 @@ function init_extruder_panel(){
 }
 
 function update_second_extruder(){
-   temperature_second_extruder(document.getElementById('enable_second_extruder').checked);
-  if (document.getElementById('enable_second_extruder').checked) {
-       document.getElementById('second_extruder_UI').style.display='block';
-       document.getElementById('temperature_secondExtruder').style.display='table-row';
-    }
-  else {
+    temperature_second_extruder(document.getElementById('enable_second_extruder').checked);
+    // if (document.getElementById('enable_second_extruder').checked) {
+    //     document.getElementById('second_extruder_UI').style.display='block';
+    //     document.getElementById('temperature_secondExtruder').style.display='table-row';
+    // }
+    // else {
         document.getElementById('second_extruder_UI').style.display='none';
         document.getElementById('temperature_secondExtruder').style.display='none';
+        // }
+        store_localdata('enable_second_extruder', document.getElementById('enable_second_extruder').checked);
     }
-    store_localdata('enable_second_extruder', document.getElementById('enable_second_extruder').checked);
-}
 
 function on_extruder_length_Change(){
     var value = parseInt(document.getElementById('filament_length').value);
