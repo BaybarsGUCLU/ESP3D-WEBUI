@@ -288,7 +288,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #ffffff;
+  color: #000000;
   /*background-color: #ffffff; Tüm sayfanın arka plan rengi.*/
   background-color: #808080;
 }
@@ -2933,7 +2933,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 14px;
   font-weight: normal;
   line-height: 1;
-  color: #555555;
+  color: #000000;
   text-align: center;
   background-color: #eeeeee;
   border: 1px solid #cccccc;
