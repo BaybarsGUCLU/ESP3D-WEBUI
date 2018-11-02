@@ -117,7 +117,7 @@ var turkishtrans = {
     "Update":"Güncelleştirme",
     "Upload failed":"Yükleme başarısız oldu",
     "Upload":"Yükle",
-    "Uploading ":"Yükleniyor ",
+    "Uploading ":"Yükleniyor: ",
     "Upload done":"Yükleme bitti",
     "Used:":"Kullanılmış:",
     "Value | Target":"Değer | Hedef",
