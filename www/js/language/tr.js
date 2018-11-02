@@ -116,7 +116,7 @@ var turkishtrans = {
     "Update is ongoing, please wait and retry.":"Güncelleme devam ediyor, lütfen bekleyin ve tekrar deneyin.",
     "Update":"Güncelleştirme",
     "Upload failed":"Yükleme başarısız oldu",
-    "Upload":"Yükleme",
+    "Upload":"Yükle",
     "Uploading ":"Yükleniyor ",
     "Upload done":"Yükleme bitti",
     "Used:":"Kullanılmış:",
