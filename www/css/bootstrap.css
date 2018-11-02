@@ -1520,7 +1520,7 @@ th {
   border-bottom-width: 2px;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
-  /*background-color: #f9f9f9;* esp3d sekmesi/
+  /*background-color: #f9f9f9;* esp3d sekmesi*/
   background-color: #808080;
 }
 .table-hover > tbody > tr:hover {
@@ -1757,7 +1757,7 @@ output {
   font-size: 14px;
   line-height: 1.42857143;
   color: #555555;
-  background-color: #ffffff;
+  background-color: #808080;
   background-image: none;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -2935,7 +2935,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   line-height: 1;
   color: #555555;
   text-align: center;
-  background-color: #808080;
+  background-color: #eeeeee;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
@@ -3037,7 +3037,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav .open > a:hover,
 .nav .open > a:focus {
   background-color: #eeeeee;
-  border-color: #337ab7;
+  /*border-color: #337ab7;*/
+  border-color: #808080;
 }
 .nav .nav-divider {
   height: 1px;
