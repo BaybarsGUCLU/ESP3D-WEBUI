@@ -7,7 +7,8 @@ div.tab {
     border-right: 1px solid #ccc;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    background-color: #f1f1f1;
+    /*background-color: #f1f1f1; tabların arka plan rengi.*/
+    background-color: #3e3939;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
