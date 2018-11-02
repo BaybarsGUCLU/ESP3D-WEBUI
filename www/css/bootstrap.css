@@ -3526,6 +3526,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-brand {
   color: #777777;
 }
+.navbar-default .navbar-img {
+  border-image: -moz-repeating-linear-gradient(#00FF00,#0D2F38);
+  background-image: image-set();
+}
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
   color: #5e5e5e;

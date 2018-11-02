@@ -76,9 +76,11 @@ function stop_graph_output(){
 }
 
 function on_autocheck_temperature(){
+
     if (document.getElementById('autocheck_temperature').checked) {
        store_localdata('autocheck_temperature', true);
-       var interval = parseInt(document.getElementById('tempInterval_check').value);
+       // var interval = parseInt(document.getElementById('tempInterval_check').value);   // Textbox'tan gelen bilgiye göre ayarlıyordu.
+       var interval = 9999999;                                                                // zaman olarak biz 1 sn verdik.
        if (!isNaN(interval) && interval > 0 && interval < 100) {
            if (interval_temperature != -1 )clearInterval(interval_temperature);
            interval_temperature = setInterval(function(){ get_Temperatures() }, interval * 1000);
