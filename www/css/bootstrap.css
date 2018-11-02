@@ -123,8 +123,7 @@ input,
 optgroup,
 select,
 textarea {
-  /*color: inherit;*/
-  color: #808080;
+  color: inherit;
   font: inherit;
   margin: 0;
 }
@@ -289,7 +288,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #333333;
+  color: #ffffff;
   /*background-color: #ffffff; Tüm sayfanın arka plan rengi.*/
   background-color: #808080;
 }
@@ -2936,7 +2935,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   line-height: 1;
   color: #555555;
   text-align: center;
-  background-color: #eeeeee;
+  background-color: #808080;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
