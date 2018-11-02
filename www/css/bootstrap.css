@@ -123,7 +123,8 @@ input,
 optgroup,
 select,
 textarea {
-  color: inherit;
+  /*color: inherit;*/
+  color: #808080;
   font: inherit;
   margin: 0;
 }
@@ -2268,7 +2269,7 @@ fieldset[disabled] a.btn {
 }
 .btn-default {
   color: #333333;
-  background-color: #ffffff;
+  background-color: #808080;
   border-color: #cccccc;
 }
 .btn-default:focus,
