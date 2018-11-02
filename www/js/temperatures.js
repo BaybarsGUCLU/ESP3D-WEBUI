@@ -81,7 +81,7 @@ function on_autocheck_temperature(){
        store_localdata('autocheck_temperature', true);
        // var interval = parseInt(document.getElementById('tempInterval_check').value);   // Textbox'tan gelen bilgiye göre ayarlıyordu.
        var interval = 9999999;                                                                // zaman olarak biz 1 sn verdik.
-       if (!isNaN(interval) && interval > 0 && interval < 100) {
+       if (!isNaN(interval) && interval > 0 && interval < 99999999999) { // 99999999999 olan ter 100'dü.
            if (interval_temperature != -1 )clearInterval(interval_temperature);
            interval_temperature = setInterval(function(){ get_Temperatures() }, interval * 1000);
           start_graph_output();
