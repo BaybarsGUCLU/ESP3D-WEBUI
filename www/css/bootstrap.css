@@ -3528,7 +3528,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-img {
   /*border-image: -moz-repeating-linear-gradient(#00FF00,#0D2F38);*/
-  list-image-1: url("../images/deltafab_logo.png");
+  /*list-image-1: url("../images/deltafab_logo.png");*/
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
