@@ -57,7 +57,7 @@ var turkishtrans = {
     "Feed (25-150%)":"Besleme (25-150%)",
     "Feedrate :":"İlerleme hızı :",
     "Filename":"Dosya adı",
-    "Filter temperatures":"Filtre sıcaklıkları",
+    "Filter temperatures":"Sıcaklıkları filtrele",
     "Firmware":"Yazılım",
     "Flow (50-300%)":"Akış (% 50-300)",
     "Heater T0":"Isıtıcı T0",
