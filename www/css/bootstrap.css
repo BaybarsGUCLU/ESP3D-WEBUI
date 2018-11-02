@@ -3302,8 +3302,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   float: left;
   padding: 15px 15px;
   font-size: 18px;
-  line-height: 20px;
-  height: 50px;
+  line-height: 10px;
+  /*line-height: 20px; eski hali*/
+  height: 10px;
+  /*height: 50px;  eski hali*/
 }
 .navbar-brand:hover,
 .navbar-brand:focus {

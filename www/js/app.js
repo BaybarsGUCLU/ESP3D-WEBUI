@@ -46,7 +46,7 @@ function update_UI_firmware_target() {
         }
     else if (target_firmware == "marlin" ) {
         fwName = null;
-        document.getElementById('configtablink').style.display = 'none';
+        // document.getElementById('configtablink').style.display = 'none';
         }
     else if (target_firmware == "marlinkimbra" ) {
         fwName = "Marlin Kimbra";
