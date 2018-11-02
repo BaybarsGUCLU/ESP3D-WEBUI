@@ -1757,7 +1757,7 @@ output {
   font-size: 14px;
   line-height: 1.42857143;
   color: #555555;
-  background-color: #808080;
+  background-color: #000000;
   background-image: none;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -3969,8 +3969,10 @@ a.badge:focus {
 }
 .list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
-  color: #337ab7;
-  background-color: #ffffff;
+  /*color: #3498db;*/
+  color: #ffffff;
+  /*background-color: #ffffff;*/
+  background-color: #808080;
 }
 .list-group-item > .badge {
   float: right;
@@ -4207,7 +4209,7 @@ a.badge:focus {
   display: block;
   padding: 10px 15px;
   margin-bottom: -1px;
-  background-color: #ffffff;
+  background-color: #808080;
   border: 1px solid #dddddd;
 }
 .list-group-item:first-child {
