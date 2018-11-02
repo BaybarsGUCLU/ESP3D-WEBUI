@@ -41,6 +41,8 @@ var spanishtrans = {
 "Controls":"Controles",
 "Credits":"Cr&eacute;ditos",
 "Dashboard":"Tablero",
+    "Basic_Dashboard": "Basit",
+    // Dil desteği ayarlanacak.
 "Data mofified":"Cambio de datos",
 "Do you want to save?":"	&iquest;Desea guardar ?",
 "enable second extruder":"activar segundo extrusor",

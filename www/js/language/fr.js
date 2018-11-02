@@ -41,6 +41,8 @@ var frenchtrans = {
 "Controls":"Controles",
 "Credits":"Cr&eacute;dits",
 "Dashboard":"Tableau de bord",
+    "Basic_Dashboard": "Basit",
+    // Dil desteği ayarlanacak.
 "Data mofified":"Donn&eacute;es modifi&eacute;es",
 "Do you want to save?":"Voulez-vous enregistrer?",
 "enable second extruder":"activer second extrudeur",

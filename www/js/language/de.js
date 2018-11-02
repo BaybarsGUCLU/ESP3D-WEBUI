@@ -41,6 +41,8 @@ var germantrans = {
 "Controls":"Steuerung",
 "Credits":"ZU Verdanken",
 "Dashboard":"&Uuml;berschichtsseite",
+    "Basic_Dashboard": "Basit",
+    // Dil desteği ayarlanacak.
 "Data mofified":"Daten ge&auml;ndert",
 "Do you want to save?":"Sollen gespeichert werden?",
 "enable second extruder":"zweiten Extruder aktivieren",
