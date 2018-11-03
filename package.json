@@ -1,6 +1,10 @@
 {
   "name": "ESP3D-WebUI",
   "description": "Web UI for ESP3D",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
   "devDependencies": {
     "del": "^2.2.2",
     "deprecated": "0.0.1",
@@ -26,5 +30,8 @@
   },
   "repository": "https://github.com/luc-github/ESP3D-WEBUI",
   "author": "Luc LEBOSSE",
-  "license": "(ISC OR GPL-3.0)"
+  "license": "(ISC OR GPL-3.0)",
+  "dependencies": {
+    "electron": "^3.0.7"
+  }
 }
